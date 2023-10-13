@@ -1,0 +1,28 @@
+{{ if and .Values.services.certManager.enabled .Values.services.argocd.enabled }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-certificate
+  namespace: {{ .Values.services.istio.gateway.namespace }}
+  # todo: annotations
+spec:
+  secretName: argocd-server-tls
+  duration: 2160h0m0s # 90d
+  renewBefore: 360h0m0s # 15d
+  subject:
+    organizations:
+      - generic-infrastructure  # todo: move to values.yaml
+  commonName: generic-infrastructure.org  # todo: move to values.yaml
+  isCA: false
+  privateKey:  # todo: move to values.yaml
+    algorithm: Ed25519
+    encoding: PKCS1
+  dnsNames:
+    - .  # todo: compose from service + environment + region + domain
+  issuerRef:
+    {{ if eq .Values.network.issuer "selfsigned" }}
+    name: istio-ca
+    kind: ClusterIssuer
+    group: cert-manager.io
+    {{ end }}
+{{ end }}

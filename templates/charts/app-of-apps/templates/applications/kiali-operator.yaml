@@ -1,0 +1,33 @@
+{{ if and .Values.services.istio.enabled .Values.services.kiali.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kiali-operator
+  namespace: {{ .Values.services.argocd.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.services.kiali.namespace }}
+  project: {{ .Values.project.name }}
+  source:
+    chart: kiali-operator
+    repoURL: https://kiali.org/helm-charts
+    targetRevision: {{ .Values.services.kiali.targetRevision }}
+    helm:
+      valuesObject:
+        {{ include "app-of-apps.valuesKialiOperator" . | nindent 16 }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        istio-injection: enabled
+{{ end }}

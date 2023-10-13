@@ -1,0 +1,19 @@
+{{ if .Values.services.argocd.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.project.name }}
+  namespace: {{ .Values.services.argocd.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: {{ .Values.project.description }}
+  sourceRepos:
+    - "*"
+  destinations:
+    - namespace: {{ .Values.services.argocd.namespace }}
+      server: https://kubernetes.default.svc
+{{ end }}

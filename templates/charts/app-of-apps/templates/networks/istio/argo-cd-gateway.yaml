@@ -1,0 +1,29 @@
+{{ if and (or .Values.services.istio.enabled (eq .Values.network.type "istio")) .Values.services.argocd.enabled }}
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: argocd-ingress-gateway
+  namespace: {{ .Values.services.istio.gateway.namespace }}
+  # todo: annotations
+spec:
+  selector:
+    istio: ingress
+  servers:
+    - hosts:
+        - # todo: base on service + environment + region + domain
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+    - hosts:
+        - # todo: base on service + environment + region + domain
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: argocd-server-tls
+{{ end }}

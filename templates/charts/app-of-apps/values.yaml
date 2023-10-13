@@ -1,0 +1,50 @@
+nameOverride: ""
+fullnameOverride: ""
+
+project:
+  name: example
+  description: example
+  environment: example
+  region: example
+  platform: example
+  profile: demo
+  repository: git@github.com:generic-templates/terragrunt-devops.git
+  branch: HEAD
+
+network:
+  type: istio
+  issuer: selfsigned
+
+logging:
+  enabled: true
+  level: info
+  format: json
+
+services:
+  argocd:
+    enabled: true
+    targetRevision: 5.38.1
+    namespace: argocd
+    values: values.yaml
+  certManager:
+    enabled: true
+    targetRevision: 1.12.2
+    namespace: cert-manager
+    values: values.yaml
+  istio:
+    enabled: true
+    targetRevision: 1.18.0
+    base:
+      namespace: istio-system
+      values: values.yaml
+    gateway:
+      namespace: istio-ingress
+      values: values.yaml
+    istiod:
+      namespace: istio-system
+      values: values.yaml
+  kiali:
+    enabled: true
+    targetRevision: 1.70.0
+    namespace: kiali-operator
+    values: values.yaml

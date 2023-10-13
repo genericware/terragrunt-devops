@@ -1,0 +1,11 @@
+{{ if or .Values.services.istio.enabled (eq .Values.network.type "istio") }}
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: {{ .Values.services.istio.istiod.namespace }}
+  # todo: annotations
+spec:
+  mtls:
+    mode: PERMISSIVE
+{{ end }}
