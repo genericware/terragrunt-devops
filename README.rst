@@ -2,14 +2,5 @@
  terragrunt-devops
 ===================
 
-:Author: caerulescens <caerulescens.github@proton.me>
-
----------
- install
----------
-
-
-
--------
- usage
--------
+:Authors: caerulescens <caerulescens.github@proton.me>
+:Description:
