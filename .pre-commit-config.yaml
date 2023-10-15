@@ -44,6 +44,7 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
       - id: rst-backticks
+        exclude: ^docs/index.rst
       - id: rst-directive-colons
       - id: rst-inline-touching-normal
       - id: text-unicode-replacement-char
