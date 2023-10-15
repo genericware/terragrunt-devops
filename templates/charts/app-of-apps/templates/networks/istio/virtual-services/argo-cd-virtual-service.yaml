@@ -1,0 +1,21 @@
+{{ if and (or .Values.applications.istio.enabled (eq .Values.network.mode "istio")) .Values.applications.argocd.enabled }}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argocd-virtual-service
+  namespace: {{ .Values.applications.argocd.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+spec:
+  hosts:
+    - argocd.{{ .Values.project.environment }}.{{ .Values.project.region }}.{{ .Values.project.domain }}
+  gateways:
+    - {{ .Values.applications.istio.gateway.namespace }}/argocd-ingress-gateway
+  http:
+    - route:
+        - destination:
+            host: argo-cd-argocd-server.argocd.svc.cluster.local
+            port:
+              number: 80
+{{ end }}

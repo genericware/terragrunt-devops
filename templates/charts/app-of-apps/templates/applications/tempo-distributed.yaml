@@ -1,0 +1,33 @@
+{{ if .Values.applications.argocd.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+  namespace: {{ .Values.applications.tempo.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.applications.argocd.namespace }}
+  project: {{ .Values.project.name }}
+  source:
+    chart: tempo-distributed
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: {{ .Values.applications.tempo.revision }}
+    helm:
+      valuesObject:
+        {{ include "app-of-apps.valuesObjectTempoDistributed" . | nindent 16 }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        istio-injection: enabled
+{{ end }}

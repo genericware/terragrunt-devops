@@ -1,14 +1,14 @@
 locals {
   environment_vars = read_terragrunt_config(find_in_parent_folders("environment.hcl"))
-  base_source_url = "git::git@github.com:generic-infrastructure/minikube-cluster.git"
-  ref = "feature/package-module"
+  base_source_url  = "git::git@github.com:generic-infrastructure/minikube-cluster.git"
+  ref              = "feature/package-module"
 }
 
 # todo: param version
 generate "provider" {
-  path = "provider.tf"
+  path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
-  contents = <<EOF
+  contents  = <<EOF
 provider "minikube" {
   kubernetes_version = "v1.26.1"
 }
@@ -22,15 +22,15 @@ remote_state {
   }
 
   generate = {
-    path = "backend.tf"
+    path      = "backend.tf"
     if_exists = "overwrite"
   }
 }
 
 inputs = {
-  nodes              = 4
-  cpus               = 4
-  memory             = 8192
-  disk_size          = 25600
-  extra_disks        = 0
+  nodes       = 4
+  cpus        = 4
+  memory      = 8192
+  disk_size   = 25600
+  extra_disks = 0
 }

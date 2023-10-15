@@ -37,8 +37,3 @@ variable "extra_disks" {
   type        = number
   description = "The number of additional disks."
 }
-
-variable "argocd_admin_password" {
-  type        = string
-  description = "The admin password for ArgoCD."
-}

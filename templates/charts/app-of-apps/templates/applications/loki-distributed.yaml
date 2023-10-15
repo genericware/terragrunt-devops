@@ -1,0 +1,33 @@
+{{ if .Values.applications.loki.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: {{ .Values.applications.loki.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.applications.argocd.namespace }}
+  project: {{ .Values.project.name }}
+  source:
+    chart: loki-distributed
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: {{ .Values.applications.loki.revision }}
+    helm:
+      valuesObject:
+        {{ include "app-of-apps.valuesObjectLokiDistributed" . | nindent 16 }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        istio-injection: enabled
+{{ end }}

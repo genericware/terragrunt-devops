@@ -1,0 +1,37 @@
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  version: 1.11.0
+  high-availability:
+    replicas: 3
+  config:
+    domain:
+      api.development.local.generic-infrastructure.org: |
+    network:
+      auto-tls: Enabled
+      http-protocol: Redirected
+    istio:
+      gateway.knative-serving.knative-ingress-gateway: "istio-ingress.istio-ingress.svc.cluster.local"
+    autoscaler:
+      stable-window: "60s"
+    tracing:
+      backend: zipkin
+      zipkin-endpoint: "tempo-distributed-distributor.tempo.svc.cluster.local:9411"
+      sample-rate: "0.1"
+  ingress:
+    istio:
+      # todo: test
+      enabled: true
+      knative-ingress-gateway:
+        selector:
+          istio: ingress
+        servers:
+          - port:
+              number: 80
+              name: http
+              protocol: HTTP
+            hosts:
+              - "*"

@@ -1,50 +1,94 @@
-nameOverride: ""
+# provide a name in place of 'app-of-apps'
+nameOverride: app-of-apps
+# string to fully override `"app-of-apps.fullname"`
 fullnameOverride: ""
 
 project:
-  name: example
-  description: example
-  environment: example
-  region: example
-  platform: example
+  name: generic-infrastructure
+  description: application that launches other applications
+  organization: generic-infrastructure
+  # environment options: 'development'
+  environment: development
+  region: local
+  domain: generic-infrastructure.org
+  # platform options: 'minikube'
+  platform: minikube
+  # profile options: 'demo', 'default'
   profile: demo
-  repository: git@github.com:generic-templates/terragrunt-devops.git
+  repository: git@github.com:generic-infrastructure/terragrunt-devops.git
   branch: HEAD
 
 network:
-  type: istio
+  # mode options: 'istio'
+  mode: istio
+  # issuer options: 'selfsigned'
   issuer: selfsigned
+
+applications:
+  argocd:
+    enabled: true
+    revision: 5.38.1
+    namespace: argocd
+  certManager:
+    enabled: true
+    revision: 1.12.2
+    namespace: cert-manager
+  istio:
+    enabled: true
+    revision: 1.18.0
+    base:
+      namespace: istio-system
+    gateway:
+      namespace: istio-ingress
+    istiod:
+      namespace: istio-system
+  kiali:
+    enabled: true
+    revision: 1.70.0
+    namespace: kiali-operator
+  knative:
+    enabled: true
+    operator:
+      version: 1.11.0
+      namespace: default
+    serving:
+      version: 1.11.0
+      namespace: knative-serving
+    eventing:
+      version: 1.11.0
+      namespace: knative-eventing
+  prometheus:
+    enabled: true
+    revision: 48.1.1
+    namespace: kube-prometheus
+  loki:
+    enabled: true
+    revision: 0.69.16
+    namespace: loki
+  promtail:
+    enabled: true
+    revision: 6.11.5
+    namespace: promtail
+  tempo:
+    enabled: true
+    revision: 1.4.8
+    namespace: tempo
+  kafka:
+    enabled: true
+    revision: 0.35.1
+    namespace: kafka
+  minio:
+    enabled: true
+    revision: 5.0.13
+    namespace: minio
 
 logging:
   enabled: true
   level: info
+  # format options: 'json'
+  # todo: add logfmt
   format: json
 
-services:
-  argocd:
-    enabled: true
-    targetRevision: 5.38.1
-    namespace: argocd
-    values: values.yaml
-  certManager:
-    enabled: true
-    targetRevision: 1.12.2
-    namespace: cert-manager
-    values: values.yaml
-  istio:
-    enabled: true
-    targetRevision: 1.18.0
-    base:
-      namespace: istio-system
-      values: values.yaml
-    gateway:
-      namespace: istio-ingress
-      values: values.yaml
-    istiod:
-      namespace: istio-system
-      values: values.yaml
-  kiali:
-    enabled: true
-    targetRevision: 1.70.0
-    namespace: kiali-operator
-    values: values.yaml
+tracing:
+  # todo: link enabled
+  enabled: true

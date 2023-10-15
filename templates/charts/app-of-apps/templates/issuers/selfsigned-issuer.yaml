@@ -1,4 +1,4 @@
-{{ if .Values.services.certManager.enabled }}
+{{ if .Values.applications.certManager.enabled }}
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -11,7 +11,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: istio-ca
-  namespace: {{ .Values.services.certManager.namespace }}
+  namespace: {{ .Values.applications.certManager.namespace }}
   # todo: annotations
 spec:
   isCA: true

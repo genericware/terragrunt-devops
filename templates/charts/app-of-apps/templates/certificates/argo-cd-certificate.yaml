@@ -1,9 +1,9 @@
-{{ if and .Values.services.certManager.enabled .Values.services.argocd.enabled }}
+{{ if and .Values.applications.certManager.enabled .Values.applications.argocd.enabled }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: argocd-certificate
-  namespace: {{ .Values.services.istio.gateway.namespace }}
+  namespace: {{ .Values.applications.istio.gateway.namespace }}
   # todo: annotations
 spec:
   secretName: argocd-server-tls
@@ -11,14 +11,14 @@ spec:
   renewBefore: 360h0m0s # 15d
   subject:
     organizations:
-      - generic-infrastructure  # todo: move to values.yaml
-  commonName: generic-infrastructure.org  # todo: move to values.yaml
+      - {{ .Values.project.organization }}
+  commonName: {{ .Values.project.domain }}
   isCA: false
-  privateKey:  # todo: move to values.yaml
+  privateKey:
     algorithm: Ed25519
     encoding: PKCS1
   dnsNames:
-    - .  # todo: compose from service + environment + region + domain
+    - argocd.{{ .Values.project.environment }}.{{ .Values.project.region }}.{{ .Values.project.domain }}
   issuerRef:
     {{ if eq .Values.network.issuer "selfsigned" }}
     name: istio-ca

@@ -1,9 +1,9 @@
-{{ if and .Values.services.istio.enabled .Values.services.kiali.enabled }}
+{{ if and .Values.applications.istio.enabled .Values.applications.kiali.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kiali-operator
-  namespace: {{ .Values.services.argocd.namespace }}
+  namespace: {{ .Values.applications.argocd.namespace }}
   # todo: annotations
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
@@ -12,15 +12,15 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .Values.services.kiali.namespace }}
+    namespace: {{ .Values.applications.kiali.namespace }}
   project: {{ .Values.project.name }}
   source:
     chart: kiali-operator
     repoURL: https://kiali.org/helm-charts
-    targetRevision: {{ .Values.services.kiali.targetRevision }}
+    targetRevision: {{ .Values.applications.kiali.revision }}
     helm:
       valuesObject:
-        {{ include "app-of-apps.valuesKialiOperator" . | nindent 16 }}
+        {{ include "app-of-apps.valuesObjectKialiOperator" . | nindent 16 }}
   syncPolicy:
     automated:
       prune: true

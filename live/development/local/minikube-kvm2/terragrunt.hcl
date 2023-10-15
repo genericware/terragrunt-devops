@@ -7,7 +7,7 @@ include "root" {
 }
 
 include "envcommon" {
-  path = "${dirname(find_in_parent_folders())}/_envcommon/minikube.hcl"
+  path   = "${dirname(find_in_parent_folders())}/_envcommon/minikube.hcl"
   expose = true
 }
 

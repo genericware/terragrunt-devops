@@ -1,0 +1,21 @@
+{{ if and (or .Values.applications.istio.enabled (eq .Values.network.mode "istio")) .Values.applications.kiali.enabled }}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kiali-virtual-service
+  namespace: {{ .Values.applications.kiali.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+spec:
+  hosts:
+    - kiali.{{ .Values.project.environment }}.{{ .Values.project.region }}.{{ .Values.project.domain }}
+  gateways:
+    - {{ .Values.applications.istio.gateway.namespace }}/kiali-ingress-gateway
+  http:
+    - route:
+        - destination:
+            host: kiali.istio-system.svc.cluster.local
+            port:
+              number: 20001
+{{ end }}

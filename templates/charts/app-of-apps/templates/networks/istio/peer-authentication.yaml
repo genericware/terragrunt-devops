@@ -1,9 +1,9 @@
-{{ if or .Values.services.istio.enabled (eq .Values.network.type "istio") }}
+{{ if or .Values.applications.istio.enabled (eq .Values.network.mode "istio") }}
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
   name: default
-  namespace: {{ .Values.services.istio.istiod.namespace }}
+  namespace: {{ .Values.applications.istio.istiod.namespace }}
   # todo: annotations
 spec:
   mtls:

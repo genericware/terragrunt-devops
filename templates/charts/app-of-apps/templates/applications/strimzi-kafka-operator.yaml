@@ -1,0 +1,33 @@
+{{ if .Values.applications.kafka.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: strimzi-kafka-operator
+  namespace: {{ .Values.applications.kafka.namespace }}
+  # todo: annotations
+  labels:
+    {{- include "app-of-apps.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.applications.argocd.namespace }}
+  project: {{ .Values.project.name }}
+  source:
+    chart: strimzi-kafka-operator
+    repoURL: https://strimzi.io/charts/
+    targetRevision: {{ .Values.applications.kafka.revision }}
+    helm:
+      valuesObject:
+        {{ include "app-of-apps.valuesObjectStrimziKafkaOperator" . | nindent 16 }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        istio-injection: enabled
+{{ end }}

@@ -1,9 +1,9 @@
-{{ if and .Values.services.certManager.enabled }}
+{{ if and .Values.applications.certManager.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cert-manager
-  namespace: {{ .Values.services.certManager.namespace }}
+  namespace: {{ .Values.applications.certManager.namespace }}
   # todo: annotations
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
@@ -12,15 +12,15 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .Values.services.certManager.namespace }}
+    namespace: {{ .Values.applications.certManager.namespace }}
   project: {{ .Values.project.name }}
   source:
     chart: cert-manager
     repoURL: https://charts.jetstack.io
-    targetRevision: {{ .Values.services.certManager.targetRevision }}
+    targetRevision: {{ .Values.applications.certManager.revision }}
     helm:
       valuesObject:
-        {{ include "app-of-apps.valuesCertManager" . | nindent 16 }}
+        {{ include "app-of-apps.valuesObjectCertManager" . | nindent 16 }}
   syncPolicy:
     automated:
       prune: true

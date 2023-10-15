@@ -1,9 +1,9 @@
-{{ if .Values.services.argocd.enabled }}
+{{ if .Values.applications.argocd.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: {{ .Values.project.name }}
-  namespace: {{ .Values.services.argocd.namespace }}
+  namespace: {{ .Values.applications.argocd.namespace }}
   # todo: annotations
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
@@ -14,6 +14,6 @@ spec:
   sourceRepos:
     - "*"
   destinations:
-    - namespace: {{ .Values.services.argocd.namespace }}
+    - namespace: {{ .Values.applications.argocd.namespace }}
       server: https://kubernetes.default.svc
 {{ end }}

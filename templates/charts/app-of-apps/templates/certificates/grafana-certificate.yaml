@@ -1,0 +1,28 @@
+{{ if and .Values.applications.certManager.enabled .Values.applications.prometheus.enabled }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-certificate
+  namespace: {{ .Values.applications.istio.gateway.namespace }}
+  # todo: annotations
+spec:
+  secretName: grafana-server-tls
+  duration: 2160h0m0s # 90d
+  renewBefore: 360h0m0s # 15d
+  subject:
+    organizations:
+      - {{ .Values.project.organization }}
+  commonName: {{ .Values.project.domain }}
+  isCA: false
+  privateKey:
+    algorithm: Ed25519
+    encoding: PKCS1
+  dnsNames:
+    - grafana.{{ .Values.project.environment }}.{{ .Values.project.region }}.{{ .Values.project.domain }}
+  issuerRef:
+    {{ if eq .Values.network.issuer "selfsigned" }}
+    name: istio-ca
+    kind: ClusterIssuer
+    group: cert-manager.io
+    {{ end }}
+{{ end }}

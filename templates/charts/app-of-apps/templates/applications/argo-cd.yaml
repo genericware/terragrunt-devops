@@ -1,9 +1,9 @@
-{{ if .Values.services.argocd.enabled }}
+{{ if .Values.applications.argocd.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argocd
-  namespace: {{ .Values.services.argocd.namespace }}
+  namespace: {{ .Values.applications.argocd.namespace }}
   # todo: annotations
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
@@ -12,15 +12,15 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .Values.services.argocd.namespace }}
+    namespace: {{ .Values.applications.argocd.namespace }}
   project: {{ .Values.project.name }}
   source:
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: {{ .Values.services.argocd.targetRevision }}
+    targetRevision: {{ .Values.applications.argocd.revision }}
     helm:
       valuesObject:
-        {{ include "app-of-apps.valuesArgocd" . | nindent 16 }}
+        {{ include "app-of-apps.valuesObjectArgoCD" . | nindent 16 }}
   syncPolicy:
     automated:
       prune: true

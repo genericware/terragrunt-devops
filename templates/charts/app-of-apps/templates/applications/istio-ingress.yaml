@@ -1,9 +1,9 @@
-{{ if or .Values.services.istio.enabled (eq .Values.network.type "istio") }}
+{{ if or .Values.applications.istio.enabled (eq .Values.network.type "istio") }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: istio-ingress
-  namespace: {{ .Values.services.argocd.namespace }}
+  namespace: {{ .Values.applications.argocd.namespace }}
   # todo: annotations
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
@@ -12,15 +12,15 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .Values.services.istio.gateway.namespace }}
+    namespace: {{ .Values.applications.istio.gateway.namespace }}
   project: {{ .Values.project.name }}
   source:
     chart: gateway
     repoURL: https://istio-release.storage.googleapis.com/charts
-    targetRevision: {{ .Values.services.istio.targetRevision }}
+    targetRevision: {{ .Values.applications.istio.revision }}
     helm:
       valuesObject:
-        {{ include "app-of-apps.valuesIstioIngress" . | nindent 16 }}
+        {{ include "app-of-apps.valuesObjectIstioIngress" . | nindent 16 }}
   syncPolicy:
     automated:
       prune: true
