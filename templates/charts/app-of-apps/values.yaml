@@ -61,6 +61,10 @@ applications:
     enabled: true
     revision: 48.1.1
     namespace: kube-prometheus
+  minio:
+    enabled: true
+    revision: 5.0.13
+    namespace: minio
   loki:
     enabled: true
     revision: 0.69.16
@@ -77,10 +81,6 @@ applications:
     enabled: true
     revision: 0.35.1
     namespace: kafka
-  minio:
-    enabled: true
-    revision: 5.0.13
-    namespace: minio
 
 logging:
   enabled: true
