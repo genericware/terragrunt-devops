@@ -1,3 +1,13 @@
+variable "repository_url" {
+  type        = string
+  description = "The repository url."
+}
+
+variable "repository_branch" {
+  type        = string
+  description = "The repository branch."
+}
+
 variable "environment" {
   type        = string
   description = "The environment name."
@@ -6,6 +16,11 @@ variable "environment" {
 variable "region" {
   type        = string
   description = "The region name."
+}
+
+variable "profile" {
+  type        = string
+  description = "The profile name."
 }
 
 variable "driver" {

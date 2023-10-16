@@ -116,9 +116,9 @@ The cluster is initialized using `waves`_; ArgoCD waits for healthy resources at
  post-install
 --------------
 
-^^^^^^^
- https
-^^^^^^^
+^^^^^^^^^^^^^^
+ enable https
+^^^^^^^^^^^^^^
 
 #. ::
 
@@ -126,18 +126,18 @@ The cluster is initialized using `waves`_; ArgoCD waits for healthy resources at
 
 #. add cert to browser
 
-^^^^^^^^^
- ingress
-^^^^^^^^^
+^^^^^^^^^^^^^^^^
+ enable ingress
+^^^^^^^^^^^^^^^^
 
 #. open new terminal window
 #. ::
 
     minikube tunnel
 
-^^^^^
- dns
-^^^^^
+^^^^^^^^^^^^
+ enable dns
+^^^^^^^^^^^^
 
 #. get ``external-ip``::
 
@@ -155,9 +155,9 @@ The cluster is initialized using `waves`_; ArgoCD waits for healthy resources at
     <external-ip> minio.development.local.generic-infrastructure.com
     <external-ip> api.development.local.generic-infrastructure.com
 
-^^^^^^
- disk
-^^^^^^
+^^^^^^^^^^^^^
+ enable disk
+^^^^^^^^^^^^^
 
 #. ::
 
@@ -184,9 +184,9 @@ The cluster is initialized using `waves`_; ArgoCD waits for healthy resources at
     minikube delete
 
 
-------------
- visualize
-------------
+-------
+ graph
+-------
 
 #. ::
 
@@ -227,7 +227,7 @@ The cluster is initialized using `waves`_; ArgoCD waits for healthy resources at
 
 #. ::
 
-        minikube delete
+    minikube delete
 
 * qemu2 fix-all
 #. ::
@@ -240,7 +240,7 @@ The cluster is initialized using `waves`_; ArgoCD waits for healthy resources at
 
 #. ::
 
-        minikube delete
+    minikube delete
 
 ^^^^^
  dns
