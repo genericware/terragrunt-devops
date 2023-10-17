@@ -1,5 +1,13 @@
-# todo: maybe use argocd cli instead
-resource "local_file" "akmecorp-master" {
+terraform {
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = ">=2.4.0"
+    }
+  }
+}
+
+resource "local_file" "default" {
   filename = "${path.root}/files/manifest.yaml"
   content  = <<-EOT
 apiVersion: argoproj.io/v1alpha1
