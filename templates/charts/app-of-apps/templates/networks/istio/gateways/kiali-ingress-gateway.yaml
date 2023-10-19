@@ -4,7 +4,8 @@ kind: Gateway
 metadata:
   name: kiali-ingress-gateway
   namespace: {{ .Values.applications.istio.gateway.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-120"
 spec:
   selector:
     istio: ingress

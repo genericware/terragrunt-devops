@@ -3,7 +3,8 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: selfsigned
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-150"
 spec:
   selfSigned: {}
 ---
@@ -12,7 +13,8 @@ kind: Certificate
 metadata:
   name: istio-ca
   namespace: {{ .Values.applications.certManager.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-150"
 spec:
   isCA: true
   duration: 87600h0m0s # 10 years
@@ -34,7 +36,8 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: istio-ca
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-150"
 spec:
   ca:
     secretName: istio-ca

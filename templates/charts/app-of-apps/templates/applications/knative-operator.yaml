@@ -4,7 +4,8 @@ kind: Application
 metadata:
   name: knative-operator
   namespace: {{ .Values.applications.knative.operator.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-90"
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
   finalizers:

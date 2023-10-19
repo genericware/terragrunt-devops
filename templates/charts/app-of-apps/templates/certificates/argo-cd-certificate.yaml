@@ -4,7 +4,8 @@ kind: Certificate
 metadata:
   name: argocd-certificate
   namespace: {{ .Values.applications.istio.gateway.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-140"
 spec:
   secretName: argocd-server-tls
   duration: 2160h0m0s # 90d

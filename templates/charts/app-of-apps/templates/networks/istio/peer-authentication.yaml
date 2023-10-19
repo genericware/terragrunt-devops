@@ -4,7 +4,8 @@ kind: PeerAuthentication
 metadata:
   name: default
   namespace: {{ .Values.applications.istio.istiod.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
 spec:
   mtls:
     mode: PERMISSIVE

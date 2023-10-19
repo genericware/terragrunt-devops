@@ -4,7 +4,8 @@ kind: Application
 metadata:
   name: loki
   namespace: {{ .Values.applications.loki.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-40"
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
   finalizers:

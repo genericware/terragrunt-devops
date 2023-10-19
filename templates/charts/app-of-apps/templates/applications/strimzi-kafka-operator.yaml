@@ -4,7 +4,8 @@ kind: Application
 metadata:
   name: strimzi-kafka-operator
   namespace: {{ .Values.applications.kafka.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
   finalizers:

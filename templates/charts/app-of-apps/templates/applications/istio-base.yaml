@@ -4,7 +4,8 @@ kind: Application
 metadata:
   name: istio-base
   namespace: {{ .Values.applications.argocd.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-190"
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
   finalizers:

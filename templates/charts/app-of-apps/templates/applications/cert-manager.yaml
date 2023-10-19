@@ -4,7 +4,8 @@ kind: Application
 metadata:
   name: cert-manager
   namespace: {{ .Values.applications.certManager.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-160"
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
   finalizers:

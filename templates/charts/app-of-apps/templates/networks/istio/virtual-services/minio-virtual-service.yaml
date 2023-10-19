@@ -4,7 +4,8 @@ kind: VirtualService
 metadata:
   name: minio-virtual-service
   namespace: {{ .Values.applications.minio.namespace }}
-  # todo: annotations
+  annotations:
+    argocd.argoproj.io/sync-wave: "-110"
   labels:
     {{- include "app-of-apps.labels" . | nindent 4 }}
 spec:
