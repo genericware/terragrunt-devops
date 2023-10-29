@@ -13,5 +13,6 @@ include "envcommon" {
 }
 
 inputs = {
-  driver = "qemu2"
+  cluster_name = "development-local-minikube-qemu2"
+  driver       = "qemu2"
 }

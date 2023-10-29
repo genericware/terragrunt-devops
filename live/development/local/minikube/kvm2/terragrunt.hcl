@@ -12,5 +12,6 @@ include "envcommon" {
 }
 
 inputs = {
-  driver = "kvm2"
+  cluster_name = "development-local-minikube-kvm2"
+  driver       = "kvm2"
 }
