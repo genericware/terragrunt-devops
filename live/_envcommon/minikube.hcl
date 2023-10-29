@@ -1,6 +1,6 @@
 locals {
-  base_source_url    = "git::git@github.com:generic-infrastructure/minikube-cluster.git"
-  ref                = "feature/package-module"
+  base_source_url    = "git::git@github.com:generic-infrastructure/terragrunt-devops.git//templates/modules/minikube-cluster"
+  ref                = "feature/baseline-project"
   name               = "generic-infrastructure"
   description        = "A manifest for launching a kubernetes cluster."
   organization       = "generic-infrastructure"
@@ -32,7 +32,7 @@ remote_state {
 
   generate = {
     path      = "backend.tf"
-    if_exists = "overwrite"
+    if_exists = "overwrite_terragrunt"
   }
 }
 
