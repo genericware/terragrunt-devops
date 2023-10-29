@@ -1,6 +1,6 @@
 locals {
-  base_source_url    = "git::git@github.com:generic-infrastructure/terragrunt-devops.git//templates/modules/minikube-cluster"
-  ref                = "feature/baseline-project"
+  base_source_url    = "git::git@github.com:generic-infrastructure/minikube-cluster.git"
+  ref                = "develop"
   name               = "generic-infrastructure"
   description        = "A manifest for launching a kubernetes cluster."
   organization       = "generic-infrastructure"
@@ -13,16 +13,16 @@ locals {
   kubernetes_version = "v1.26.1"
 }
 
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite"
-  contents  = <<EOF
-provider "minikube" {
-  kubernetes_version = "${local.kubernetes_version}"
-}
-provider "local" {}
-EOF
-}
+#generate "provider" {
+#  path      = "provider.tf"
+#  if_exists = "overwrite_terragrunt"
+#  contents  = <<EOF
+#provider "minikube" {
+#  kubernetes_version = "${local.kubernetes_version}"
+#}
+#provider "local" {}
+#EOF
+#}
 
 remote_state {
   backend = "local"
