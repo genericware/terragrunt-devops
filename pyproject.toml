@@ -39,6 +39,7 @@ line-length = 88
 [tool.ruff]
 target-version = "py311"
 select = ["F", "E", "W", "C90", "I", "N", "D", "UP"]
+ignore = ["D100", "D104"]
 src = ["app", "tests"]
 line-length = 88
 
