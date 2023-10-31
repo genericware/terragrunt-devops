@@ -55,9 +55,9 @@ inputs = {
   network_mode       = local.network_mode
   network_issuer     = local.network_issuer
   kubernetes_version = local.kubernetes_version
-  nodes              = 4
-  cpus               = 4
-  memory             = 8192
-  disk_size          = 25600
+  nodes              = 1
+  cpus               = 20
+  memory             = 32768
+  disk_size          = 102400
   extra_disks        = 0
 }
