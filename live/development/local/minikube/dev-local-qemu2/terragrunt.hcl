@@ -15,4 +15,5 @@ include "envcommon" {
 inputs = {
   cluster_name = "dev-local-qemu2"
   driver       = "qemu2"
+  network      = "socket_vmnet"
 }

@@ -14,4 +14,5 @@ terraform {
 inputs = {
   cluster_name = "dev-local-kvm2"
   driver       = "kvm2"
+  network      = "default"
 }
