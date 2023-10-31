@@ -1,5 +1,5 @@
 locals {
-  base_source_url    = "git::git@github.com:generic-infrastructure/minikube-cluster.git"
+  base_source_url    = "git::https://github.com/generic-infrastructure/terragrunt-devops.git"
   ref                = "feature/package-module"
   name               = "generic-infrastructure"
   description        = "A manifest for launching a kubernetes cluster."
