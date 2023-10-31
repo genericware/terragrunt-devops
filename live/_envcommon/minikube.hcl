@@ -22,7 +22,7 @@ provider "helm" {
     host                   = minikube_cluster.default.host
     client_certificate     = minikube_cluster.default.client_certificate
     client_key             = minikube_cluster.default.client_key
-    cluster_ca_certificate = minikube_cluster.cluster_ca_certificate
+    cluster_ca_certificate = minikube_cluster.default.cluster_ca_certificate
   }
 }
 provider "local" {}
