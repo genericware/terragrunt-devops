@@ -17,10 +17,18 @@ generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
+provider "helm" {
+  kubernetes {
+    host                   = minikube_cluster.default.host
+    client_certificate     = minikube_cluster.default.client_certificate
+    client_key             = minikube_cluster.default.client_key
+    cluster_ca_certificate = minikube_cluster.cluster_ca_certificate
+  }
+}
+provider "local" {}
 provider "minikube" {
   kubernetes_version = "${local.kubernetes_version}"
 }
-provider "local" {}
 EOF
 }
 
