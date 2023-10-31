@@ -7,6 +7,7 @@ locals {
   domain             = "generic-infrastructure.org"
   profile            = "default"
   repository         = "https://github.com/generic-infrastructure/app-of-apps.git"
+  path               = "."
   branch             = "feature/baseline-repository"
   network_mode       = "istio"
   network_issuer     = "selfsigned"
@@ -52,6 +53,7 @@ inputs = {
   profile            = local.profile
   repository         = local.repository
   branch             = local.branch
+  path               = local.path
   network_mode       = local.network_mode
   network_issuer     = local.network_issuer
   kubernetes_version = local.kubernetes_version
