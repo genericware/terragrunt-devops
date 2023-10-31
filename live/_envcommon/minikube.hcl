@@ -5,6 +5,7 @@ locals {
   description        = "A manifest for launching a kubernetes cluster."
   organization       = "generic-infrastructure"
   domain             = "generic-infrastructure.org"
+  platform           = "minikube"
   profile            = "default"
   repository         = "https://github.com/generic-infrastructure/app-of-apps.git"
   path               = "."
@@ -50,6 +51,7 @@ inputs = {
   description        = local.description
   organization       = local.organization
   domain             = local.domain
+  platform           = local.platform
   profile            = local.profile
   repository         = local.repository
   branch             = local.branch
