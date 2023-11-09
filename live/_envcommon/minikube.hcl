@@ -1,5 +1,5 @@
 locals {
-  base_source_url    = "git::git@github.com:generic-infrastructure/minikube-cluster.git"
+  base_source_url    = "git::git@github.com:generic-infrastructure/terraform-minikube-cluster.git"
   ref                = "feature/baseline-repository"
   name               = "default"
   description        = "A manifest for launching a kubernetes cluster."
