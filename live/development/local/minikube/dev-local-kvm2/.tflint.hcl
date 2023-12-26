@@ -1,4 +1,3 @@
-# todo: should probably be folder specific
 config {
   format              = "compact"
   module              = true
