@@ -18,7 +18,6 @@ repos:
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: mixed-line-ending
-      - id: name-tests-test
       - id: no-commit-to-branch
         args: [--branch, master, --branch, develop]
       - id: trailing-whitespace
@@ -43,10 +42,17 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
       - id: rst-backticks
-        exclude: ^docs/index.rst
       - id: rst-directive-colons
       - id: rst-inline-touching-normal
       - id: text-unicode-replacement-char
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.7.1
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+      - id: poetry-export
+      - id: poetry-install
 
   - repo: https://github.com/psf/black
     rev: 23.9.1
@@ -54,11 +60,14 @@ repos:
       - id: black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.290
+    rev: v0.1.7
     hooks:
       - id: ruff
+        args: [ --fix ]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.1
+    rev: v1.7.1
     hooks:
       - id: mypy
+        additional_dependencies:
+          - "pydantic>=1.10.4"
