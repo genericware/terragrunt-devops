@@ -10,7 +10,7 @@ keywords = ["terragrunt", "devops"]
 classifiers = ["Development Status :: 2 - Pre-Alpha"]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.10,<4.0"
 pydantic = "^2.5.2"
 pydantic-settings = "^2.1.0"
 
