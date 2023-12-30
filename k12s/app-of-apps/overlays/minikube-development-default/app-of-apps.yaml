@@ -28,15 +28,15 @@ spec:
           issuer: selfsigned
         applications:
           argocd:
-            enabled: false
+            enabled: true
             revision: 5.49.0
             namespace: argocd
           certManager:
-            enabled: true
+            enabled: false
             revision: 1.13.2
             namespace: cert-manager
           istio:
-            enabled: true
+            enabled: false
             revision: 1.18.0
             base:
               namespace: istio-system
