@@ -28,7 +28,7 @@ spec:
           issuer: selfsigned
         applications:
           argocd:
-            enabled: false
+            enabled: true
             revision: 5.49.0
             namespace: argocd
           certManager:
