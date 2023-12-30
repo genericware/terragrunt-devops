@@ -13,7 +13,12 @@ include "envcommon" {
 }
 
 inputs = {
-  cluster_name = "dev-local-qemu2"
+  cluster_name = "dev-local-qemu2-default"
   driver       = "qemu2"
   network      = "socket_vmnet"
+  nodes        = 1
+  cpus         = 20
+  memory       = 32768
+  disk_size    = 102400
+  extra_disks  = 0
 }
