@@ -28,11 +28,11 @@ spec:
           issuer: selfsigned
         applications:
           argocd:
-            enabled: true
+            enabled: false
             revision: 5.49.0
             namespace: argocd
           certManager:
-            enabled: false
+            enabled: true
             revision: 1.13.2
             namespace: cert-manager
           istio:
