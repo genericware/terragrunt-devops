@@ -36,7 +36,7 @@ spec:
             revision: 1.13.2
             namespace: cert-manager
           istio:
-            enabled: false
+            enabled: true
             revision: 1.18.0
             base:
               namespace: istio-system
