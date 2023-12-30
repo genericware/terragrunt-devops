@@ -2,10 +2,10 @@ locals {
   base_source_url    = "git::git@github.com:generic-infrastructure/terraform-minikube-cluster.git"
   ref                = "feature/baseline-repository"
   kubernetes_version = "v1.26.1"
-  nodes              = 4
-  cpus               = 5
-  memory             = 8192
-  disk_size          = 25600
+  nodes              = 1
+  cpus               = 20
+  memory             = 32768
+  disk_size          = 102400
   extra_disks        = 0
 }
 
