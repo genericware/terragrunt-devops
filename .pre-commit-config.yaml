@@ -18,6 +18,7 @@ repos:
       - id: debug-statements
       - id: destroyed-symlinks
       - id: detect-private-key
+        exclude: ^k12s/argocd/base/charts/
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: no-commit-to-branch
