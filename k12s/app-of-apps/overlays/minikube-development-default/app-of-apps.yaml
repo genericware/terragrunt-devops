@@ -45,7 +45,7 @@ spec:
             istiod:
               namespace: istio-system
           kiali:
-            enabled: false
+            enabled: true
             revision: 1.70.0
             namespace: kiali-operator
           knative:
