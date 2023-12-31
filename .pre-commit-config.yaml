@@ -1,3 +1,6 @@
+default_language_version:
+  python: python3.10
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -12,14 +15,12 @@ repos:
       - id: check-symlinks
       - id: check-toml
       - id: check-vcs-permalinks
-      - id: check-yaml
-        exclude: ^templates/charts/app-of-apps/templates
       - id: debug-statements
       - id: destroyed-symlinks
       - id: detect-private-key
+        exclude: ^k12s/argocd/base/charts/
       - id: end-of-file-fixer
       - id: mixed-line-ending
-      - id: name-tests-test
       - id: no-commit-to-branch
         args: [--branch, master, --branch, develop]
       - id: trailing-whitespace
@@ -44,10 +45,17 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
       - id: rst-backticks
-        exclude: ^docs/index.rst
       - id: rst-directive-colons
       - id: rst-inline-touching-normal
       - id: text-unicode-replacement-char
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.7.1
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+      - id: poetry-export
+      - id: poetry-install
 
   - repo: https://github.com/psf/black
     rev: 23.9.1
@@ -55,11 +63,14 @@ repos:
       - id: black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.290
+    rev: v0.1.7
     hooks:
       - id: ruff
+        args: [ --fix ]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.1
+    rev: v1.7.1
     hooks:
       - id: mypy
+        additional_dependencies:
+          - "pydantic>=1.10.4"
