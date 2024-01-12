@@ -1,4 +1,3 @@
-# todo: debug qemu driver start on minikube
 terraform {
   source = "${include.envcommon.locals.base_source_url}?ref=${include.envcommon.locals.ref}"
 }
