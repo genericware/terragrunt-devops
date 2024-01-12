@@ -12,11 +12,6 @@ terraform {
 }
 
 inputs = {
-  cluster_name = "dev-local-kvm2-demo"
+  cluster_name = "dev-local-kvm2"
   driver       = "kvm2"
-  nodes        = 1
-  cpus         = 8
-  memory       = 8192
-  disk_size    = 102400
-  extra_disks  = 0
 }

@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/generic-infrastructure/app-of-apps.git
-    targetRevision: feature/baseline-repository
+    targetRevision: feature/patches-1
     path: .
     helm:
       valuesObject:
@@ -60,7 +60,7 @@ spec:
               version: 1.11.0
               namespace: knative-eventing
           prometheus:
-            enabled: true
+            enabled: false
             revision: 48.1.1
             namespace: kube-prometheus
           minio:

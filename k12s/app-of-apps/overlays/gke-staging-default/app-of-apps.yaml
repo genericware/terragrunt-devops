@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/generic-infrastructure/app-of-apps.git
-    targetRevision: feature/baseline-repository
+    targetRevision: feature/patches-1
     path: .
     helm:
       valuesObject:

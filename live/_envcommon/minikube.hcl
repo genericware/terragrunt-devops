@@ -6,7 +6,7 @@ locals {
 
 generate "provider" {
   path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
+  if_exists = "overwrite"
   contents  = <<EOF
 provider "minikube" {
   kubernetes_version = "${local.kubernetes_version}"
