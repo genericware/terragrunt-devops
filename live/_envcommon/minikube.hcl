@@ -11,12 +11,6 @@ generate "provider" {
 provider "minikube" {
   kubernetes_version = "${local.kubernetes_version}"
 }
-provider "kubernetes" {
-  host                   = minikube_cluster.default.host
-  client_certificate     = minikube_cluster.default.client_certificate
-  client_key             = minikube_cluster.default.client_key
-  cluster_ca_certificate = minikube_cluster.default.cluster_ca_certificate
-}
 EOF
 }
 
@@ -24,7 +18,7 @@ remote_state {
   backend = "local"
   generate = {
     path      = "backend.tf"
-    if_exists = "overwrite_terragrunt"
+    if_exists = "overwrite"
   }
   config = {
     path = "${get_parent_terragrunt_dir()}/${path_relative_to_include()}/terraform.tfstate"

@@ -14,75 +14,7 @@ spec:
     path: .
     helm:
       valuesObject:
-        project:
-          name: default
-          description: application that launches other applications
-          organization: generic-infrastructure
-          environment: production
-          region: us-east1-b
-          domain: generic-infrastructure.org
-          platform: gke
-          profile: default
-        network:
-          mode: istio
-          issuer: selfsigned
-        applications:
-          argocd:
-            enabled: false
-            revision: 5.49.0
-            namespace: argocd
-          certManager:
-            enabled: true
-            revision: 1.13.2
-            namespace: cert-manager
-          istio:
-            enabled: true
-            revision: 1.18.0
-            base:
-              namespace: istio-system
-            gateway:
-              namespace: istio-ingress
-            istiod:
-              namespace: istio-system
-          kiali:
-            enabled: false
-            revision: 1.70.0
-            namespace: kiali-operator
-          knative:
-            enabled: false
-            operator:
-              version: 1.11.0
-              namespace: default
-            serving:
-              version: 1.11.0
-              namespace: knative-serving
-            eventing:
-              version: 1.11.0
-              namespace: knative-eventing
-          prometheus:
-            enabled: false
-            revision: 48.1.1
-            namespace: kube-prometheus
-          minio:
-            enabled: false
-            revision: 5.0.13
-            namespace: minio
-          loki:
-            enabled: false
-            revision: 0.69.16
-            namespace: loki
-          promtail:
-            enabled: false
-            revision: 6.11.5
-            namespace: promtail
-          tempo:
-            enabled: false
-            revision: 1.4.8
-            namespace: tempo
-          kafka:
-            enabled: false
-            revision: 0.35.1
-            namespace: kafka
+# todo
   syncPolicy:
     automated:
       selfHeal: true
