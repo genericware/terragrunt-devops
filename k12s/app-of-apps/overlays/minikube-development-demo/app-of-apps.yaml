@@ -80,7 +80,7 @@ spec:
               namespace: knative-eventing
               wave: -90
           prometheus:
-            enabled: false
+            enabled: true
             revision: 48.1.1
             namespace: kube-prometheus
             wave: -80
