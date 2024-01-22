@@ -56,12 +56,12 @@ spec:
             namespace: cert-manager
             wave: -190
           kiali:
-            enabled: false
+            enabled: true
             revision: 1.70.0
             namespace: kiali-operator
             wave: -130
           argocd:
-            enabled: false
+            enabled: true
             revision: 5.49.0
             namespace: argocd
             wave: -120
