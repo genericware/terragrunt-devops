@@ -61,7 +61,7 @@ spec:
             namespace: kiali-operator
             wave: -130
           argocd:
-            enabled: true
+            enabled: false  # todo
             revision: 5.49.0
             namespace: argocd
             wave: -120
