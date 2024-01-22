@@ -43,18 +43,18 @@ spec:
             revision: 1.18.0
             base:
               namespace: istio-system
-              wave: "-220"
+              wave: -220
             istiod:
               namespace: istio-system
-              wave: "-210"
+              wave: -210
             gateway:
               namespace: istio-ingress
-              wave: "-200"
+              wave: -200
           certManager:
             enabled: true
             revision: 1.13.2
             namespace: cert-manager
-            wave: "-190"
+            wave: -190
           kiali:
             enabled: false
             revision: 1.70.0
