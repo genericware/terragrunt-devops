@@ -12,6 +12,6 @@ include "envcommon" {
 }
 
 inputs = {
-  cluster_name = "dev-local-hyperkit"
-  driver       = "hyperkit"
+  cluster_name = "dev-local-docker"
+  driver       = "docker"
 }
