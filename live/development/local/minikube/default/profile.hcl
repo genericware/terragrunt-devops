@@ -1,8 +1,8 @@
 locals {
   profile      = "default"
-  nodes        = 1
-  cpus         = 20
-  memory       = 32768
-  disk_size    = 102400
+  nodes        = 3
+  cpus         = 3
+  memory       = 4096
+  disk_size    = 32768
   extra_disks  = 0
 }
