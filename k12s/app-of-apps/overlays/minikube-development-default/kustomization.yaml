@@ -4,4 +4,3 @@ resources:
   - ../../base
 patches:
   - path: ./app-of-apps.yaml
-  - path: storageclass.yaml
