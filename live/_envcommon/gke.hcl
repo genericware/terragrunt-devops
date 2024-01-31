@@ -4,7 +4,6 @@ locals {
   kubernetes_version = "v1.28.3"
 }
 
-# todo: test
 generate "providers" {
   path = "provider.tf"
   if_exists = "overwrite_terragrunt"
@@ -17,7 +16,7 @@ provider "google" {
 EOF
 }
 
-# todo: gcs backend + auth
+# todo: use gcs backend
 remote_state {
   backend = "local"
   generate = {
