@@ -24,7 +24,7 @@ spec:
           platform: minikube
           profile: demo
           repository: https://github.com/generic-infrastructure/terragrunt-devops.git
-          branch: HEAD
+          branch: feature/patches-1
         network:
           enabled: true
           mode: istio
