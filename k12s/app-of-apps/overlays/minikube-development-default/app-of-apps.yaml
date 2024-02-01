@@ -20,7 +20,7 @@ spec:
           organization: generic-infrastructure
           environment: development
           region: local
-          domain: generic-infrastructure.org
+          domain: generic-infrastructure.test
           platform: minikube
           profile: default
           repository: git@github.com:generic-infrastructure/terragrunt-devops.git
