@@ -14,5 +14,4 @@ include "envcommon" {
 inputs = {
   cluster_name = "dev-local-docker"
   driver       = "docker"
-  cni          = "bridge"
 }
