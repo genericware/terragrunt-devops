@@ -119,7 +119,7 @@ spec:
             revision: 0.9.0
             namespace: mongodb
             wave: -10
-        # todo: tenants
+        # todo: add tenants
   syncPolicy:
     automated:
       selfHeal: true
