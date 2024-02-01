@@ -23,7 +23,7 @@ spec:
           domain: generic-infrastructure.test
           platform: minikube
           profile: default
-          repository: git@github.com:generic-infrastructure/terragrunt-devops.git
+          repository: https://github.com/generic-infrastructure/terragrunt-devops.git
           branch: HEAD
         network:
           enabled: true
