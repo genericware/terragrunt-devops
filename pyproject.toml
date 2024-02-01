@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "terragrunt-devops"
 version = "0.1.0"
-description = ""
+description = "A terragrunt project for developer operations."
 license = "MIT"
 authors = ["caerulescens <caerulescens.github@proton.me>"]
 maintainers = ["caerulescens <caerulescens.github@proton.me>"]
