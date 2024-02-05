@@ -2,20 +2,20 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/scott-the-programmer/minikube" {
-  version     = "0.3.8"
-  constraints = "0.3.8"
+  version     = "0.3.10"
+  constraints = "0.3.10"
   hashes = [
-    "h1:anFP4cFfE2jqcC571BZB7h1Uoe3l39/jT/rj/xCwj6Q=",
-    "zh:151989fb8bb7e319146204b875aa8ba1a9e5b452d7eb0ebf42f6c21c38df4091",
-    "zh:1907624e7f6706100ae6baf3970d89c52891053b29d0872e55b0935955728007",
+    "h1:dRxmwR86DAeQW4hyOOWmZWBEHr2peiEmqSCb5UxIUuo=",
     "zh:1c3e89cf19118fc07d7b04257251fc9897e722c16e0a0df7b07fcd261f8c12e7",
-    "zh:4d2a5351ef5984f26334ac3786dd7fe30992ab00855a31edbd06ce8f47530385",
-    "zh:664e54c7ba083fa0c932e4c5fe2601677019e8522ef4ad979132e43575cc895e",
-    "zh:74a1acf7686956476470ea2c5b9bb58be5780b908f05a53bc0e39e1d1536dfed",
-    "zh:7f71512d92148391a6ff6d8d3a522b5fcba89cb8ec76f72fc62bd72db7a25bdf",
-    "zh:aabffa4fe21e84d8820a359080ef6bf97e18cd29fc70a57be22ca9dd49d83d1d",
-    "zh:dc2548ae335e4c685dc83657e175375398726e8bd18528350adb769e4500e598",
-    "zh:e080c45bc95503a30335dd9fe672725924d600ab3eb0762c9c1e958f1a77f8a1",
-    "zh:e47e21de3deaf1c8deb4d6dc3d4c49a406ceeadae294834ba98f40428d8e56bf",
+    "zh:4a641eb44b71ffc47b13e96d756ab2cc7dc65714ffefc2defb9e2c6555dd62b5",
+    "zh:5fe11ad8d3729e3935383912d236adfcd0e2c1a1c4b4cd276f2dfad57d5d0a78",
+    "zh:837ed98a69c0a908d342e47387d7f5fa057e1bdc282cbe63258cba6d5b779db7",
+    "zh:8605370628695b6ffef3021433ee0447d9362c2283f768c7b25dc47662fc36f2",
+    "zh:9f39b53dcbd326889da51db5c18e54e4fb3ce26c5b59c506ab9f83431e04ef37",
+    "zh:beda23f5da497f7cdc911a4908a4df90ab163be773b27b9c55aced5f751705dd",
+    "zh:cae8170ad687c20a99fb4b960dae209c6c310dd0ba76c854bf85a753b2be6282",
+    "zh:dee32d69cbf4f0be062445d5a81011a32cf67729cbd7343c2fedb6e427f608cf",
+    "zh:ecbf2b1fabd20c46d2d7feee92f4294598b9a0c169b520d620981bf4ee69c093",
+    "zh:ef594d9497b0590e83b3b3faa8d300c6447b555f6188ca0ecd7f1c7f695accec",
   ]
 }
