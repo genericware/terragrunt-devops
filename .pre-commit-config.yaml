@@ -1,6 +1,3 @@
-default_language_version:
-  python: python3.10
-
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -54,7 +51,6 @@ repos:
     hooks:
       - id: poetry-check
       - id: poetry-lock
-      - id: poetry-export
       - id: poetry-install
 
   - repo: https://github.com/psf/black
@@ -63,7 +59,7 @@ repos:
       - id: black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.7
+    rev: v0.1.12
     hooks:
       - id: ruff
         args: [ --fix ]

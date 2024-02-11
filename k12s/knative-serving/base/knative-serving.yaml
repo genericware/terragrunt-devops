@@ -23,7 +23,6 @@ spec:
       sample-rate: "0.1"
   ingress:
     istio:
-      # todo: test
       enabled: true
       knative-ingress-gateway:
         selector:

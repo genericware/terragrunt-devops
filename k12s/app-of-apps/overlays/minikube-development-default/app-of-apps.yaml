@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/generic-infrastructure/app-of-apps.git
-    targetRevision: feature/baseline-repository
+    targetRevision: feature/patches-1
     path: .
     helm:
       valuesObject:
@@ -20,69 +20,106 @@ spec:
           organization: generic-infrastructure
           environment: development
           region: local
-          domain: generic-infrastructure.org
+          domain: generic-infrastructure.test
           platform: minikube
           profile: default
+          repository: https://github.com/generic-infrastructure/terragrunt-devops.git
+          branch: feature/patches-1
         network:
+          enabled: true
           mode: istio
           issuer: selfsigned
+        logs:
+          enabled: true
+          level: info
+          format: json
+        metrics:
+          enabled: true
+        traces:
+          enabled: true
         applications:
-          argocd:
-            enabled: true
-            revision: 5.49.0
-            namespace: argocd
-          certManager:
-            enabled: true
-            revision: 1.13.2
-            namespace: cert-manager
           istio:
             enabled: true
             revision: 1.18.0
             base:
               namespace: istio-system
-            gateway:
-              namespace: istio-ingress
+              wave: -220
             istiod:
               namespace: istio-system
+              wave: -210
+            gateway:
+              namespace: istio-ingress
+              wave: -200
+          certManager:
+            enabled: true
+            revision: 1.13.2
+            namespace: cert-manager
+            wave: -190
           kiali:
             enabled: true
             revision: 1.70.0
             namespace: kiali-operator
+            wave: -130
+          argocd:
+            enabled: true
+            revision: 5.49.0
+            namespace: argocd
+            wave: -120
           knative:
             enabled: false
             operator:
               version: 1.11.0
               namespace: default
+              wave: -110
             serving:
               version: 1.11.0
               namespace: knative-serving
+              wave: -100
             eventing:
               version: 1.11.0
               namespace: knative-eventing
+              wave: -90
           prometheus:
             enabled: true
             revision: 48.1.1
             namespace: kube-prometheus
-          minio:
+            wave: -80
+          rook:
             enabled: false
-            revision: 5.0.13
-            namespace: minio
+            revision: v1.13.2
+            namespace: rook-ceph
+            wave: -70
           loki:
             enabled: false
             revision: 0.69.16
             namespace: loki
+            wave: -60
           promtail:
             enabled: false
             revision: 6.11.5
             namespace: promtail
+            wave: -50
           tempo:
             enabled: false
             revision: 1.4.8
             namespace: tempo
-          kafka:
+            wave: -40
+          strimzi:
             enabled: false
             revision: 0.35.1
             namespace: kafka
+            wave: -30
+          mysql:
+            enabled: false
+            revision: 2.1.1
+            namespace: mysql-operator
+            wave: -20
+          mongodb:
+            enabled: false
+            revision: 0.9.0
+            namespace: mongodb
+            wave: -10
+        # todo: add tenants
   syncPolicy:
     automated:
       selfHeal: true
